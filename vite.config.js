@@ -4,11 +4,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
 
-  // ← ADD THIS — fixes "global is not defined" for sockjs-client
+  // Fix for "global is not defined"
   define: {
     global: 'globalThis',
   },
 
+  // Dev server (local only)
   server: {
     port: 5173,
     proxy: {
@@ -22,5 +23,13 @@ export default defineConfig({
         ws: true,
       }
     }
+  },
+
+  // ✅ ADD THIS (for Render deployment)
+  preview: {
+    host: true,
+    allowedHosts: [
+      'pastry-point.onrender.com'
+    ]
   }
 })
