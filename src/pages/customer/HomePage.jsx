@@ -17,28 +17,14 @@ export default function HomePage() {
       <CartDrawer />
 
       {/* ── Hero Section ─────────────────────────────────────────── */}
-      <section className="relative h-screen bg-cover bg-center bg-no-repeat overflow-hidden"
+      <section className="relative h-screen bg-gray-900 overflow-hidden"
                style={{
-                 backgroundImage: 'url("https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&h=800&fit=crop")'
+                 backgroundImage: 'linear-gradient(135deg, #ff7a18 0%, #ffb347 100%)'
                }}>
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40" />
-        
-        {/* Floating glass navbar effect */}
-        <div className="absolute top-0 left-0 right-0 z-40 bg-white/10 backdrop-blur-xl border-b border-white/20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <Link to={ROUTES.HOME} className="text-white font-bold text-2xl">Pastry Point</Link>
-            <div className="hidden md:flex items-center gap-4">
-              <Link to={ROUTES.MENU} className="text-white/80 hover:text-white transition">Menu</Link>
-              <Link to={ROUTES.KIOSK} className="text-white/80 hover:text-white transition">Kiosk</Link>
-            </div>
-          </div>
-        </div>
-
         {/* Hero Content */}
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <div className="text-center text-white space-y-8 max-w-2xl mx-auto px-4 animate-fade-in">
-            <h1 className="text-6xl md:text-7xl font-bold leading-tight animate-slide-up">
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight animate-slide-up">
               Pastry Point
             </h1>
             <p className="text-xl md:text-2xl text-white/90 animate-slide-up" style={{ animationDelay: '0.1s' }}>
@@ -47,32 +33,22 @@ export default function HomePage() {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <Link to={ROUTES.MENU} className="flex items-center justify-center gap-2 bg-gradient-orange text-white
+              <Link to={ROUTES.MENU} className="flex items-center justify-center gap-2 bg-white text-primary-500
                            font-bold px-8 py-4 rounded-2xl hover:shadow-xl hover:scale-105 transition-all duration-200
                            text-lg">
-                Explore Stores <ArrowRight size={20} />
+                Explore Menu <ArrowRight size={20} />
               </Link>
-              <Link to={ROUTES.KIOSK} className="flex items-center justify-center gap-2 border-2 border-white/60
-                           text-white font-bold px-8 py-4 rounded-2xl hover:bg-white/10 transition-all duration-200
-                           backdrop-blur text-lg">
+              <Link to={ROUTES.KIOSK} className="flex items-center justify-center gap-2 border-2 border-white
+                           text-white font-bold px-8 py-4 rounded-2xl hover:bg-white/10 transition-all duration-200 text-lg">
                 Open Kiosk
               </Link>
             </div>
-
-            {/* Login button for mobile */}
-            {!isLoggedIn && (
-              <div className="sm:hidden">
-                <Link to={ROUTES.LOGIN} className="inline-block text-white/80 hover:text-white transition">
-                  Login
-                </Link>
-              </div>
-            )}
           </div>
         </div>
       </section>
 
       {/* ── Perks strip ────────────────────────────────────────────── */}
-      <section className="bg-neutral-bg border-b border-white/50">
+      <section className="border-b border-white/50" style={{ backgroundColor: '#fff8f1' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-3 gap-4">
           {[
             { icon: Clock,  label: 'Ready in minutes',    sub: 'Live estimated wait time' },

@@ -70,7 +70,7 @@ export default function StorePage() {
     <>
       <CartDrawer />
 
-      <div className="bg-neutral-bg min-h-screen pt-4 pb-20">
+      <div className="min-h-screen pt-4 pb-20" style={{ backgroundColor: '#fff8f1' }}>
         {/* Header */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
           <h1 className="text-4xl md:text-5xl font-bold text-neutral-text mb-2">

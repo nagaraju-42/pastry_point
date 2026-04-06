@@ -38,7 +38,7 @@ function CustomerLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-neutral-bg pt-16 pb-24 md:pb-0">
+      <main className="min-h-screen pt-16 pb-24 md:pb-0" style={{ backgroundColor: '#fff8f1' }}>
         {children}
       </main>
       <BottomNav />
@@ -53,8 +53,8 @@ export default function App() {
         position="top-right"
         toastOptions={{
           duration: 3500,
-          style: { fontFamily: 'Inter, sans-serif', fontSize: '14px' },
-          success: { style: { background: '#d8f3dc', color: '#1b4332', border: '1px solid #95d5b2' } },
+          style: { fontFamily: 'Inter, sans-serif', fontSize: '14px', borderRadius: '0.75rem' },
+          success: { style: { background: '#dbeafe', color: '#1e3a8a', border: '1px solid #bfdbfe' } },
           error:   { style: { background: '#fee2e2', color: '#991b1b', border: '1px solid #fca5a5' } },
         }}
       />

@@ -63,12 +63,12 @@ export default function Navbar() {
             {isLoggedIn && (
               <button
                 onClick={toggleCart}
-                className="relative p-2 rounded-xl text-gray-600 hover:text-bakery-green hover:bg-gray-50 transition-colors"
+                className="relative p-2 rounded-xl text-gray-600 hover:text-primary-500 hover:bg-gray-50 transition-colors"
                 aria-label="Open cart"
               >
                 <ShoppingCart size={22} />
                 {itemCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 bg-bakery-green text-white text-[10px] font-bold
+                  <span className="absolute -top-0.5 -right-0.5 bg-gradient-orange text-white text-[10px] font-bold
                                    w-4.5 h-4.5 min-w-[18px] min-h-[18px] rounded-full flex items-center justify-center px-1 animate-bounce-soft">
                     {itemCount > 9 ? '9+' : itemCount}
                   </span>
@@ -148,7 +148,7 @@ export default function Navbar() {
                 Login
               </Link>
               <Link to={ROUTES.REGISTER} onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-bakery-green hover:bg-bakery-light">
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-primary-600 hover:bg-primary-50">
                 Sign Up
               </Link>
             </>
