@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast'
 
 // Pages - Customer
 import HomePage        from './pages/customer/HomePage.jsx'
+import StorePage       from './pages/customer/StorePage.jsx'
 import MenuPage        from './pages/customer/MenuPage.jsx'
 import CartPage        from './pages/customer/CartPage.jsx'
 import CheckoutPage    from './pages/customer/CheckoutPage.jsx'
@@ -27,6 +28,7 @@ import KioskPage from './pages/kiosk/KioskPage.jsx'
 
 // Layout & Guards
 import Navbar          from './components/common/Navbar.jsx'
+import BottomNav       from './components/common/BottomNav.jsx'
 import ProtectedRoute  from './components/common/ProtectedRoute.jsx'
 import AdminRoute      from './components/common/AdminRoute.jsx'
 
@@ -36,9 +38,10 @@ function CustomerLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-bakery-cream pt-16">
+      <main className="min-h-screen bg-neutral-bg pt-16 pb-24 md:pb-0">
         {children}
       </main>
+      <BottomNav />
     </>
   )
 }
@@ -59,6 +62,7 @@ export default function App() {
       <Routes>
         {/* ── Public customer routes ─────────────────── */}
         <Route path={ROUTES.HOME} element={<CustomerLayout><HomePage /></CustomerLayout>} />
+        <Route path={ROUTES.STORES} element={<CustomerLayout><StorePage /></CustomerLayout>} />
         <Route path={ROUTES.MENU} element={<CustomerLayout><MenuPage /></CustomerLayout>} />
 
         {/* ── Auth routes ────────────────────────────── */}

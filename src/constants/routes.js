@@ -1,6 +1,7 @@
 const ROUTES = {
   // Customer
   HOME:           '/',
+  STORES:         '/stores',
   MENU:           '/menu',
   CART:           '/cart',
   CHECKOUT:       '/checkout',

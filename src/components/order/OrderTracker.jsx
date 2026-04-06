@@ -23,11 +23,11 @@ export default function OrderTracker({ status }) {
   }
 
   return (
-    <div className="relative flex items-center justify-between w-full py-4 px-2">
+    <div className="relative flex items-center justify-between w-full py-8 px-2">
       {/* connector line */}
-      <div className="absolute top-1/2 left-4 right-4 h-1 bg-gray-200 -translate-y-1/2 z-0 rounded-full">
+      <div className="absolute top-1/2 left-4 right-4 h-2 bg-gray-200 -translate-y-1/2 z-0 rounded-full">
         <div
-          className="h-full bg-bakery-green rounded-full transition-all duration-700"
+          className="h-full bg-gradient-orange rounded-full transition-all duration-700"
           style={{ width: `${(currentStep / (STEPS.length - 1)) * 100}%` }}
         />
       </div>
@@ -37,16 +37,17 @@ export default function OrderTracker({ status }) {
         const done = i < currentStep
         const active = i === currentStep
         return (
-          <div key={step.label} className="relative z-10 flex flex-col items-center gap-1.5 w-14">
-            <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300
-              ${done   ? 'bg-bakery-green text-white shadow-md'   : ''}
-              ${active ? 'bg-bakery-green text-white shadow-lg ring-4 ring-green-200 scale-110' : ''}
-              ${!done && !active ? 'bg-white border-2 border-gray-200 text-gray-400' : ''}`}
+          <div key={step.label} className="relative z-10 flex flex-col items-center gap-2 flex-1">
+            <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 font-bold
+              ${done   ? 'bg-gradient-orange text-white shadow-lg scale-100'   : ''}
+              ${active ? 'bg-gradient-orange text-white shadow-xl ring-4 ring-primary-200 scale-110 animate-pulse-glow' : ''}
+              ${!done && !active ? 'bg-white border-2 border-gray-200 text-gray-300' : ''}`}
             >
-              <Icon size={17} />
+              {active && <span className="absolute inset-0 rounded-full animate-pulse-glow bg-primary-400/20" />}
+              <Icon size={20} className="relative z-10" />
             </div>
-            <span className={`text-[10px] text-center leading-tight font-medium
-              ${active ? 'text-bakery-green' : done ? 'text-gray-600' : 'text-gray-400'}`}>
+            <span className={`text-xs text-center leading-tight font-semibold max-w-[60px]
+              ${active ? 'text-primary-600' : done ? 'text-gray-700' : 'text-gray-400'}`}>
               {step.label}
             </span>
           </div>

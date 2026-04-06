@@ -117,7 +117,7 @@ export default function CheckoutPage() {
           contact: user?.phone   || '',
         },
 
-        theme: { color: '#2d6a4f' },
+        theme: { color: '#ff7a18' },
 
         modal: {
           ondismiss: async () => {
@@ -175,14 +175,14 @@ export default function CheckoutPage() {
             { value: 'DELIVERY', label: 'Delivery', sub: 'Delivered to you',   Icon: MapPin },
           ].map(({ value, label, sub, Icon }) => (
             <button key={value} onClick={() => setOrderType(value)}
-              className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all text-left
+              className={`flex items-center gap-3 p-4 rounded-2xl border-2 transition-all duration-200 text-left transform hover:scale-105
                 ${orderType === value
-                  ? 'border-bakery-green bg-bakery-light'
+                  ? 'border-primary-500 bg-primary-50 shadow-md'
                   : 'border-gray-200 hover:border-gray-300'}`}>
-              <Icon size={20} className={orderType === value ? 'text-bakery-green' : 'text-gray-400'} />
+              <Icon size={20} className={orderType === value ? 'text-primary-500' : 'text-gray-400'} />
               <div>
-                <p className={`font-semibold text-sm
-                  ${orderType === value ? 'text-bakery-green' : 'text-gray-700'}`}>
+                <p className={`font-bold text-sm
+                  ${orderType === value ? 'text-primary-600' : 'text-gray-700'}`}>
                   {label}
                 </p>
                 <p className="text-xs text-gray-400">{sub}</p>

@@ -20,24 +20,26 @@ export default function CartDrawer() {
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/40 z-40 backdrop-blur-sm"
+          className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm transition-opacity duration-300"
           onClick={closeCart}
         />
       )}
 
       {/* Drawer */}
-      <div className={`fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-50
+      <div className={`fixed top-0 right-0 h-full w-full max-w-sm bg-white/95 backdrop-blur-xl shadow-2xl z-50
                        flex flex-col transition-transform duration-300 ease-out
                        ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
 
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-          <div className="flex items-center gap-2">
-            <ShoppingBag size={20} className="text-bakery-green" />
-            <h2 className="font-display font-semibold text-lg text-gray-800">Your Cart</h2>
+        <div className="flex items-center justify-between px-6 py-5 border-b border-white/20 bg-white/50">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-gradient-orange rounded-xl">
+              <ShoppingBag size={20} className="text-white" />
+            </div>
+            <h2 className="font-bold text-xl text-neutral-text">Your Cart</h2>
           </div>
           <button onClick={closeCart}
-            className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
+            className="p-2 rounded-xl text-gray-400 hover:text-gray-600 hover:bg-gray-100/50 transition-colors duration-200">
             <X size={20} />
           </button>
         </div>
@@ -64,9 +66,10 @@ export default function CartDrawer() {
 
         {/* Summary + checkout button */}
         {items.length > 0 && (
-          <div className="border-t border-gray-100 p-4 space-y-3">
+          <div className="border-t border-white/20 p-5 space-y-4 bg-white/50 backdrop-blur">
             <CartSummary />
-            <button onClick={handleCheckout} className="btn-primary w-full">
+            <button onClick={handleCheckout} className="w-full py-3 px-4 bg-gradient-orange text-white font-bold rounded-xl 
+                                                       hover:shadow-xl hover:scale-105 transition-all duration-200 active:scale-95">
               Proceed to Checkout
             </button>
           </div>

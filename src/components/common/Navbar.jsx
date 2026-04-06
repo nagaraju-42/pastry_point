@@ -25,14 +25,13 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link to={ROUTES.HOME} className="flex items-center gap-2 font-display font-bold text-xl text-bakery-green">
-            <span className="text-2xl">🥐</span>
-            <span>{import.meta.env.VITE_APP_NAME || 'BakeryQ'}</span>
+          <Link to={ROUTES.HOME} className="flex items-center gap-2 font-bold text-lg md:text-xl font-sans bg-gradient-orange bg-clip-text text-transparent">
+            Pastry Point
           </Link>
 
           {/* Desktop nav links */}
@@ -41,17 +40,17 @@ export default function Navbar() {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200
                   ${location.pathname === link.to
-                    ? 'bg-bakery-light text-bakery-green'
-                    : 'text-gray-600 hover:text-bakery-green hover:bg-gray-50'}`}
+                    ? 'text-primary-500 font-semibold'
+                    : 'text-gray-700 hover:text-primary-500'}`}
               >
                 {link.label}
               </Link>
             ))}
             {isAdmin && (
               <Link to={ROUTES.ADMIN_DASHBOARD}
-                className="px-4 py-2 rounded-lg text-sm font-medium text-purple-700 hover:bg-purple-50 flex items-center gap-1.5">
+                className="px-4 py-2 rounded-xl text-sm font-medium text-purple-600 hover:text-purple-700 flex items-center gap-1.5">
                 <LayoutDashboard size={15} />
                 Dashboard
               </Link>
@@ -79,24 +78,24 @@ export default function Navbar() {
 
             {/* Auth buttons */}
             {isLoggedIn ? (
-              <div className="hidden md:flex items-center gap-2">
+              <div className="hidden md:flex items-center gap-3">
                 <Link to={ROUTES.PROFILE}
-                  className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-gray-700 hover:bg-gray-50 transition-colors">
-                  <div className="w-7 h-7 bg-bakery-green text-white rounded-full flex items-center justify-center text-xs font-bold">
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm text-gray-700 hover:bg-gray-100/50 transition-all duration-200">
+                  <div className="w-7 h-7 bg-gradient-orange text-white rounded-full flex items-center justify-center text-xs font-bold">
                     {user?.name?.[0]?.toUpperCase()}
                   </div>
                   <span className="font-medium">{user?.name?.split(' ')[0]}</span>
                 </Link>
                 <button onClick={handleLogout}
-                  className="p-2 rounded-xl text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                  className="p-2 rounded-xl text-gray-500 hover:text-primary-500 transition-colors duration-200"
                   title="Logout">
                   <LogOut size={18} />
                 </button>
               </div>
             ) : (
-              <div className="hidden md:flex items-center gap-2">
-                <Link to={ROUTES.LOGIN} className="btn-ghost text-sm">Login</Link>
-                <Link to={ROUTES.REGISTER} className="btn-primary text-sm py-2 px-4">Sign Up</Link>
+              <div className="hidden md:flex items-center gap-3">
+                <Link to={ROUTES.LOGIN} className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-500 transition-colors">Login</Link>
+                <Link to={ROUTES.REGISTER} className="px-4 py-2 text-sm font-bold text-white bg-gradient-orange rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-200">Sign Up</Link>
               </div>
             )}
 

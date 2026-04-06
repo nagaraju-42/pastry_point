@@ -16,58 +16,76 @@ export default function HomePage() {
     <>
       <CartDrawer />
 
-      {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative bg-gradient-to-br from-bakery-green to-green-800 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-             style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, #fff 0%, transparent 60%)' }} />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24 relative">
-          <div className="max-w-xl">
-            {isLoggedIn && (
-              <p className="text-green-200 font-medium mb-2 animate-fade-in">
-                Welcome back, {user?.name?.split(' ')[0]}! 👋
-              </p>
-            )}
-            <h1 className="text-4xl md:text-5xl font-display font-bold leading-tight mb-4 animate-slide-up">
-              Fresh Baked, <br />
-              <span className="text-bakery-gold">No Waiting.</span>
-            </h1>
-            <p className="text-green-100 text-lg mb-8 animate-fade-in">
-              Order from your favourite bakery online. Skip the queue, pick up when ready — or get it delivered!
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to={ROUTES.MENU} className="flex items-center gap-2 bg-white text-bakery-green
-                         font-bold px-6 py-3 rounded-xl hover:bg-bakery-cream transition-colors shadow-md">
-                Order Now <ArrowRight size={18} />
-              </Link>
-              {!isLoggedIn && (
-                <Link to={ROUTES.REGISTER} className="flex items-center gap-2 border-2 border-white/50
-                           text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-colors">
-                  Sign Up Free
-                </Link>
-              )}
+      {/* ── Hero Section ─────────────────────────────────────────── */}
+      <section className="relative h-screen bg-cover bg-center bg-no-repeat overflow-hidden"
+               style={{
+                 backgroundImage: 'url("https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&h=800&fit=crop")'
+               }}>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40" />
+        
+        {/* Floating glass navbar effect */}
+        <div className="absolute top-0 left-0 right-0 z-40 bg-white/10 backdrop-blur-xl border-b border-white/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <Link to={ROUTES.HOME} className="text-white font-bold text-2xl">Pastry Point</Link>
+            <div className="hidden md:flex items-center gap-4">
+              <Link to={ROUTES.MENU} className="text-white/80 hover:text-white transition">Menu</Link>
+              <Link to={ROUTES.KIOSK} className="text-white/80 hover:text-white transition">Kiosk</Link>
             </div>
           </div>
         </div>
-        {/* Decorative emoji */}
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 text-8xl opacity-30 hidden md:block
-                        animate-bounce-soft select-none">🥐</div>
+
+        {/* Hero Content */}
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <div className="text-center text-white space-y-8 max-w-2xl mx-auto px-4 animate-fade-in">
+            <h1 className="text-6xl md:text-7xl font-bold leading-tight animate-slide-up">
+              Pastry Point
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+              Order faster. Skip the queue.
+            </p>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+              <Link to={ROUTES.MENU} className="flex items-center justify-center gap-2 bg-gradient-orange text-white
+                           font-bold px-8 py-4 rounded-2xl hover:shadow-xl hover:scale-105 transition-all duration-200
+                           text-lg">
+                Explore Stores <ArrowRight size={20} />
+              </Link>
+              <Link to={ROUTES.KIOSK} className="flex items-center justify-center gap-2 border-2 border-white/60
+                           text-white font-bold px-8 py-4 rounded-2xl hover:bg-white/10 transition-all duration-200
+                           backdrop-blur text-lg">
+                Open Kiosk
+              </Link>
+            </div>
+
+            {/* Login button for mobile */}
+            {!isLoggedIn && (
+              <div className="sm:hidden">
+                <Link to={ROUTES.LOGIN} className="inline-block text-white/80 hover:text-white transition">
+                  Login
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
       </section>
 
       {/* ── Perks strip ────────────────────────────────────────────── */}
-      <section className="bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 grid grid-cols-3 gap-4">
+      <section className="bg-neutral-bg border-b border-white/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-3 gap-4">
           {[
             { icon: Clock,  label: 'Ready in minutes',    sub: 'Live estimated wait time' },
             { icon: Truck,  label: 'Free delivery ₹300+', sub: 'On orders above ₹300' },
             { icon: Star,   label: 'Earn loyalty points', sub: '1 point per ₹10 spent' },
           ].map(({ icon: Icon, label, sub }) => (
-            <div key={label} className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-bakery-light rounded-xl flex items-center justify-center flex-shrink-0">
-                <Icon size={18} className="text-bakery-green" />
+            <div key={label} className="flex items-center gap-4 p-4 rounded-2xl bg-white/60 backdrop-blur hover:bg-white/80 transition-all duration-200">
+              <div className="w-12 h-12 bg-gradient-orange rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                <Icon size={20} className="text-white" />
               </div>
               <div className="hidden sm:block">
-                <p className="text-sm font-semibold text-gray-700">{label}</p>
-                <p className="text-xs text-gray-400">{sub}</p>
+                <p className="text-sm font-bold text-neutral-text">{label}</p>
+                <p className="text-xs text-neutral-muted">{sub}</p>
               </div>
             </div>
           ))}
@@ -76,19 +94,21 @@ export default function HomePage() {
 
       {/* ── Categories ──────────────────────────────────────────────── */}
       {categories && categories.length > 0 && (
-        <section className="page-container">
-          <h2 className="section-title">Browse Categories</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-4">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+          <h2 className="text-3xl font-bold text-neutral-text mb-2">Browse Categories</h2>
+          <p className="text-neutral-muted mb-8">Explore our delicious collection</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
             {categories.map(cat => (
               <Link key={cat.id} to={`${ROUTES.MENU}?category=${cat.id}`}
-                className="card-hover text-center py-5">
-                <div className="text-3xl mb-2">
+                className="p-6 rounded-2xl bg-white/60 backdrop-blur hover:bg-white/80 shadow-card hover:shadow-card-hover
+                           transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 text-center group">
+                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">
                   {cat.name === 'Breads' ? '🍞' :
                    cat.name === 'Pastries' ? '🥐' :
                    cat.name === 'Cakes' ? '🎂' :
                    cat.name === 'Beverages' ? '☕' : '🍪'}
                 </div>
-                <p className="text-sm font-semibold text-gray-700">{cat.name}</p>
+                <p className="text-sm font-bold text-neutral-text">{cat.name}</p>
               </Link>
             ))}
           </div>
@@ -96,18 +116,18 @@ export default function HomePage() {
       )}
 
       {/* ── Featured items ──────────────────────────────────────────── */}
-      <section className="page-container">
-        <div className="flex items-center justify-between mb-4">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+        <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="section-title">Most Popular</h2>
-            <p className="section-subtitle">Customer favourites, baked fresh daily</p>
+            <h2 className="text-3xl font-bold text-neutral-text">Most Popular</h2>
+            <p className="text-neutral-muted mt-1">Customer favourites, baked fresh daily</p>
           </div>
-          <Link to={ROUTES.MENU} className="text-sm text-bakery-green font-semibold hover:underline flex items-center gap-1">
-            See all <ArrowRight size={14} />
+          <Link to={ROUTES.MENU} className="text-sm text-primary-600 font-bold hover:text-primary-700 flex items-center gap-1 transition-colors">
+            See all <ArrowRight size={16} />
           </Link>
         </div>
         {isLoading ? <LoadingSpinner /> : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {(featured || []).map(item => <MenuCard key={item.id} item={item} />)}
           </div>
         )}
