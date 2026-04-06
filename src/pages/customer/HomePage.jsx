@@ -1,39 +1,29 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Clock, Truck, Star } from 'lucide-react'
-import { useFeaturedItems, useCategories } from '../../hooks/useMenu.js'
-import MenuCard from '../../components/menu/MenuCard.jsx'
-import CartDrawer from '../../components/cart/CartDrawer.jsx'
-import useAuth from '../../hooks/useAuth.js'
 import ROUTES from '../../constants/routes.js'
-import LoadingSpinner from '../../components/common/LoadingSpinner.jsx'
 
 export default function HomePage() {
-  const { data: featured, isLoading } = useFeaturedItems()
-  const { data: categories } = useCategories()
-  const { isLoggedIn, user } = useAuth()
-
   return (
-    <>
-      <CartDrawer />
+    <div className="w-full"  >
 
       {/* ── Hero Section ─────────────────────────────────────────── */}
-      <section className="relative h-screen bg-gray-900 overflow-hidden"
+      <section className="relative h-screen bg-cover bg-center overflow-hidden"
                style={{
                  backgroundImage: 'linear-gradient(135deg, #ff7a18 0%, #ffb347 100%)'
                }}>
         {/* Hero Content */}
         <div className="absolute inset-0 flex items-center justify-center z-20">
-          <div className="text-center text-white space-y-8 max-w-2xl mx-auto px-4 animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight animate-slide-up">
+          <div className="text-center text-white space-y-8 max-w-2xl mx-auto px-4">
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
               Pastry Point
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+            <p className="text-xl md:text-2xl text-white/90">
               Order faster. Skip the queue.
             </p>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <Link to={ROUTES.MENU} className="flex items-center justify-center gap-2 bg-white text-primary-500
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+              <Link to={ROUTES.MENU} className="flex items-center justify-center gap-2 bg-white text-orange-600
                            font-bold px-8 py-4 rounded-2xl hover:shadow-xl hover:scale-105 transition-all duration-200
                            text-lg">
                 Explore Menu <ArrowRight size={20} />
@@ -60,54 +50,32 @@ export default function HomePage() {
                 <Icon size={20} className="text-white" />
               </div>
               <div className="hidden sm:block">
-                <p className="text-sm font-bold text-neutral-text">{label}</p>
-                <p className="text-xs text-neutral-muted">{sub}</p>
+                <p className="text-sm font-bold text-gray-800">{label}</p>
+                <p className="text-xs text-gray-600">{sub}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── Categories ──────────────────────────────────────────────── */}
-      {categories && categories.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-          <h2 className="text-3xl font-bold text-neutral-text mb-2">Browse Categories</h2>
-          <p className="text-neutral-muted mb-8">Explore our delicious collection</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {categories.map(cat => (
-              <Link key={cat.id} to={`${ROUTES.MENU}?category=${cat.id}`}
-                className="p-6 rounded-2xl bg-white/60 backdrop-blur hover:bg-white/80 shadow-card hover:shadow-card-hover
-                           transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 text-center group">
-                <div className="text-5xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                  {cat.name === 'Breads' ? '🍞' :
-                   cat.name === 'Pastries' ? '🥐' :
-                   cat.name === 'Cakes' ? '🎂' :
-                   cat.name === 'Beverages' ? '☕' : '🍪'}
-                </div>
-                <p className="text-sm font-bold text-neutral-text">{cat.name}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* ── Featured items ──────────────────────────────────────────── */}
+      {/* ── Quick Actions ────────────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-3xl font-bold text-neutral-text">Most Popular</h2>
-            <p className="text-neutral-muted mt-1">Customer favourites, baked fresh daily</p>
-          </div>
-          <Link to={ROUTES.MENU} className="text-sm text-primary-600 font-bold hover:text-primary-700 flex items-center gap-1 transition-colors">
-            See all <ArrowRight size={16} />
+        <h2 className="text-3xl font-bold text-gray-800 mb-8">Get Started</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <Link to={ROUTES.MENU} className="p-8 rounded-2xl bg-white shadow-card hover:shadow-card-hover 
+                                            transform transition-all hover:scale-105 group">
+            <div className="text-5xl mb-4">🥐</div>
+            <h3 className="text-2xl font-bold text-gray-800 mb-2">Browse Menu</h3>
+            <p className="text-gray-600">Explore our delicious selection of fresh pastries and baked goods</p>
+          </Link>
+          <Link to={ROUTES.KIOSK} className="p-8 rounded-2xl bg-white shadow-card hover:shadow-card-hover 
+                                            transform transition-all hover:scale-105 group">
+            <div className="text-5xl mb-4">📱</div>
+            <h3 className="text-2xl font-bold text-gray-800 mb-2">Try Our Kiosk</h3>
+            <p className="text-gray-600">Use our self-service kiosk for quick and easy ordering</p>
           </Link>
         </div>
-        {isLoading ? <LoadingSpinner /> : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {(featured || []).map(item => <MenuCard key={item.id} item={item} />)}
-          </div>
-        )}
       </section>
-    </>
+    </div>
   )
 }
